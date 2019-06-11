@@ -1,0 +1,73 @@
+{
+  "family": "develop-stam",
+  "containerDefinitions": [
+    {
+      "memoryReservation": 128,
+      "environment": [
+        {
+          "name": "NODE_ENV",
+          "value": "homologation"
+        },
+        {
+          "name": "NPM_TOKEN",
+          "value": "5b6c6051-c325-405c-8bc3-18edac4abb46"
+        },
+        {
+          "name": "STAM_PORT",
+          "value": "3000"
+        },
+        {
+          "name": "STAM_DB_PASSWORD",
+          "value": "XPHfcQDSVfVpu2B6"
+        },
+        {
+          "name": "STAM_DB_USERNAME",
+          "value": "db_beetech_user"
+        },
+        {
+          "name": "STAM_DB_DATABASE",
+          "value": "accounting"
+        },
+        {
+          "name": "STAM_DB_HOST",
+          "value": "homologation-db.cdu1i0qi5bqo.sa-east-1.rds.amazonaws.com"
+        },
+        {
+          "name": "STAM_DB_PORT",
+          "value": "3306"
+        },
+        {
+          "name": "STAM_LOG_LEVEL",
+          "value": "info"
+        },
+        {
+          "name": "STAM_SEND_LOGS",
+          "value": "false"
+        },
+        {
+          "name": "STAM_URL",
+          "value": "https://dev-api.beetech.global/"
+        }
+      ],
+      "name": "develop-stam",
+      "mountPoints": [],
+      "image": "137889448232.dkr.ecr.sa-east-1.amazonaws.com/stam:AWS_IMAGE_VERSION",
+      "cpu": 100,
+      "portMappings": [
+        {
+          "protocol": "tcp",
+          "containerPort": 3000,
+          "hostPort": 0
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "syslog",
+        "options": {
+          "tag": "dev-stam"
+        }
+      },
+      "essential": true,
+      "volumesFrom": []
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+version: '2'
+services:
+  MariaDB:
+    restart: always
+    image: mariadb:10.2.11
+    ports:
+      - "${STAM_DB_PORT}:3306"
+    environment:
+      - DEBUG=true
+      - MYSQL_USER=${STAM_DB_USERNAME}
+      - MYSQL_PASSWORD=${STAM_DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${STAM_DB_PASSWORD}
+      - MYSQL_DATABASE=${STAM_DB_DATABASE}
