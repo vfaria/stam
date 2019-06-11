@@ -1,19 +1,18 @@
-
 const enumHelper = Object.freeze({
   tables: {
+    customer: 'customer',
+    beneficiary: 'beneficiary',
     transaction: 'transaction',
-    transactionStatus: 'transaction_status',
-  },
-  transactionStatus: {
-    active: {
-      value: 1,
-      name: 'active'
-    },
-    inactive: {
-      value: 2,
-      name: 'inactive'
-    }
-  },
+    report: 'report',
+    graphQuery: 'graph_query',
+    scoreLevel: 'score_level',
+    purpose: 'purpose',
+    flag: 'flag',
+    flagsOnCustomer: 'flags_on_customer',
+    flagsOnBeneficiary: 'flags_on_beneficiary',
+    flagsOnReport: 'flags_on_report',
+    flagType: 'flag_type',
+  }
 });
 
 module.exports = enumHelper;

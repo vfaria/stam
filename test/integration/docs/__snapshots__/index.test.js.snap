@@ -1,0 +1,683 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Docs Generate specs and compare it to snapshop 1`] = `
+Object {
+  "components": Object {
+    "parameters": Object {
+      "Language": Object {
+        "description": "Set errors language",
+        "in": "header",
+        "name": "Accept-Language",
+        "required": false,
+        "schema": Object {
+          "type": "string",
+        },
+      },
+    },
+    "schemas": Object {
+      "Beneficiary": Object {
+        "properties": Object {
+          "bankAccountCode": Object {
+            "type": "string",
+          },
+          "country": Object {
+            "maxLength": 3,
+            "minLength": 3,
+            "type": "string",
+          },
+          "customerDocumentNumber": Object {
+            "type": "string",
+          },
+          "name": Object {
+            "type": "string",
+          },
+        },
+        "required": Array [
+          "bankAccountCode",
+          "name",
+          "country",
+        ],
+        "title": "Beneficiary",
+        "type": "object",
+      },
+      "Customer": Object {
+        "properties": Object {
+          "addressLine": Object {
+            "type": "string",
+          },
+          "country": Object {
+            "maxLength": 3,
+            "minLength": 3,
+            "type": "string",
+          },
+          "documentNumber": Object {
+            "type": "string",
+          },
+          "name": Object {
+            "type": "string",
+          },
+          "nature": Object {
+            "enum": Array [
+              "l",
+              "n",
+            ],
+            "type": "string",
+          },
+        },
+        "required": Array [
+          "documentNumber",
+          "name",
+          "nature",
+          "country",
+        ],
+        "title": "Customer",
+        "type": "object",
+      },
+      "ResponseError": Object {
+        "properties": Object {
+          "code": Object {
+            "type": "string",
+          },
+          "field": Object {
+            "type": "string",
+          },
+          "message": Object {
+            "type": "string",
+          },
+        },
+        "title": "ResponseError",
+        "type": "object",
+      },
+      "Transaction": Object {
+        "properties": Object {
+          "amount": Object {
+            "type": "decimal",
+          },
+          "beneficiary": Object {
+            "$ref": "#/components/schemas/Beneficiary",
+          },
+          "currency": Object {
+            "maxLength": 3,
+            "minLength": 3,
+            "type": "string",
+          },
+          "customer": Object {
+            "$ref": "#/components/schemas/Customer",
+          },
+          "date": Object {
+            "type": "string",
+          },
+          "id": Object {
+            "type": "string",
+          },
+          "purposeId": Object {
+            "type": "integer",
+          },
+          "purposeName": Object {
+            "type": "string",
+          },
+        },
+        "required": Array [
+          "currency",
+          "date",
+          "purposeId",
+        ],
+        "title": "Transaction",
+        "type": "object",
+      },
+      "undefined": Object {
+        "$ref": "#/components/schemas/Transaction",
+        "properties": Object {},
+      },
+    },
+    "securitySchemes": Object {
+      "OAuth2": Object {
+        "flows": Object {
+          "clientCredentials": Object {
+            "scopes": Object {
+              "all": "full access",
+            },
+            "tokenUrl": "/oauth/token",
+          },
+        },
+        "type": "oauth2",
+      },
+    },
+  },
+  "info": Object {
+    "contact": Object {
+      "email": "it@beetech.global",
+    },
+    "description": "Suspicious Transaction Monitoring System - exchange transactions AML analisys based on graph patterns",
+    "title": "stam",
+    "version": "0.0.0",
+  },
+  "openapi": "3.0.0",
+  "paths": Object {
+    "/v1/monitoring/transaction/": Object {
+      "get": Object {
+        "description": "Gets Transaction",
+        "operationId": "getTransaction",
+        "parameters": Array [
+          Object {
+            "$ref": "#/components/parameters/Language",
+          },
+          Object {
+            "description": "Decides if the return is enveloped",
+            "in": "query",
+            "name": "envelope",
+            "required": false,
+            "schema": Object {
+              "type": "boolean",
+            },
+          },
+          Object {
+            "description": "Defines the fields to be shown separeted by comma",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": Object {
+              "type": "string",
+            },
+          },
+          Object {
+            "description": "Filters.
+    Filter: name LIKE 'marcos' or 'marcus' and age equals to 24 and gender different from female.
+    Example: ?filter[%name]=marcos&filter[%name]=marcus&filter[age]=24&filter[!gender]=female",
+            "in": "query",
+            "name": "filter",
+            "required": false,
+            "schema": Object {
+              "example": "?filter[%name]=marcos&filter[%name]=marcus&filter[age]=24&filter[!gender]=female",
+              "type": "string",
+            },
+          },
+          Object {
+            "description": "Defines the page to be shown",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": Object {
+              "type": "number",
+            },
+          },
+          Object {
+            "description": "Defines number of items per page",
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "schema": Object {
+              "type": "number",
+            },
+          },
+          Object {
+            "description": "Set sorting field as ASC. Apply \\"-\\" before field name to set DESC",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": Object {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": Object {
+          "200": Object {
+            "content": Object {
+              "application/json": Object {
+                "schema": Object {
+                  "items": Object {
+                    "$ref": "#/components/schemas/Transaction",
+                  },
+                  "type": "array",
+                },
+              },
+            },
+            "description": "OK",
+            "headers": Object {
+              "x-request-id": Object {
+                "description": "Request id",
+                "schema": Object {
+                  "type": "string",
+                },
+              },
+            },
+          },
+          "404": Object {
+            "content": Object {
+              "application/json": Object {
+                "example": Object {
+                  "code": "STMGNC0001",
+                  "message": "Not Found",
+                },
+                "schema": Object {
+                  "items": Object {
+                    "$ref": "#/components/schemas/ResponseError",
+                  },
+                  "type": "array",
+                },
+              },
+            },
+            "description": "Resource not found",
+            "headers": Object {
+              "x-request-id": Object {
+                "description": "Request id",
+                "schema": Object {
+                  "type": "string",
+                },
+              },
+            },
+          },
+        },
+        "summary": "Get Transaction",
+        "tags": Array [
+          "Transaction",
+        ],
+      },
+      "post": Object {
+        "description": "Create Transaction",
+        "operationId": "createTransaction",
+        "parameters": Array [
+          Object {
+            "$ref": "#/components/parameters/Language",
+          },
+          Object {
+            "description": "Define the request payload return",
+            "in": "header",
+            "name": "Prefer",
+            "required": false,
+            "schema": Object {
+              "default": "return-minimal",
+              "enum": Array [
+                "return-minimal",
+                "return-representation",
+              ],
+              "type": "string",
+            },
+          },
+        ],
+        "requestBody": Object {
+          "content": Object {
+            "application/json": Object {
+              "schema": Object {
+                "$ref": "#/components/schemas/Transaction",
+              },
+            },
+          },
+          "required": true,
+        },
+        "responses": Object {
+          "200": Object {
+            "content": Object {
+              "application/json": Object {
+                "schema": Object {
+                  "$ref": "#/components/schemas/Transaction",
+                },
+              },
+            },
+            "description": "OK",
+            "headers": Object {
+              "x-request-id": Object {
+                "description": "Request id",
+                "schema": Object {
+                  "type": "string",
+                },
+              },
+            },
+          },
+          "201": Object {
+            "content": Object {},
+            "description": "The resource was created",
+            "headers": Object {
+              "x-id": Object {
+                "description": "Resource id",
+                "schema": Object {
+                  "type": "string",
+                },
+              },
+              "x-request-id": Object {
+                "description": "Request id",
+                "schema": Object {
+                  "type": "string",
+                },
+              },
+            },
+          },
+          "422": Object {
+            "content": Object {
+              "application/json": Object {
+                "example": Array [
+                  Object {
+                    "code": "STMGNC0002",
+                    "message": "Unprocessable entity",
+                  },
+                ],
+                "schema": Object {
+                  "items": Object {
+                    "$ref": "#/components/schemas/ResponseError",
+                  },
+                  "type": "array",
+                },
+              },
+            },
+            "description": "Unprocessable Entity",
+            "headers": Object {
+              "x-request-id": Object {
+                "description": "Request id",
+                "schema": Object {
+                  "type": "string",
+                },
+              },
+            },
+          },
+        },
+        "summary": "Create Transaction",
+        "tags": Array [
+          "Transaction",
+        ],
+      },
+    },
+    "/v1/monitoring/transaction/{transactionId}": Object {
+      "delete": Object {
+        "description": "Delete Transaction",
+        "operationId": "deleteTransaction",
+        "parameters": Array [
+          Object {
+            "$ref": "#/components/parameters/Language",
+          },
+          Object {
+            "description": "Define the request payload return",
+            "in": "header",
+            "name": "Prefer",
+            "required": false,
+            "schema": Object {
+              "default": "return-minimal",
+              "enum": Array [
+                "return-minimal",
+                "return-representation",
+              ],
+              "type": "string",
+            },
+          },
+          Object {
+            "description": "Transaction Id",
+            "in": "path",
+            "name": "transactionId",
+            "required": true,
+            "schema": Object {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": Object {
+          "200": Object {
+            "content": Object {
+              "application/json": Object {
+                "schema": Object {
+                  "$ref": "#/components/schemas/Transaction",
+                },
+              },
+            },
+            "description": "OK",
+            "headers": Object {
+              "x-request-id": Object {
+                "description": "Request id",
+                "schema": Object {
+                  "type": "string",
+                },
+              },
+            },
+          },
+          "204": Object {
+            "content": Object {},
+            "description": "No Content",
+            "headers": Object {
+              "x-request-id": Object {
+                "description": "Request id",
+                "schema": Object {
+                  "type": "string",
+                },
+              },
+            },
+          },
+          "409": Object {
+            "content": Object {
+              "application/json": Object {
+                "example": Object {
+                  "message": "Conflict",
+                },
+                "schema": Object {
+                  "items": Object {
+                    "$ref": "#/components/schemas/ResponseError",
+                  },
+                  "type": "array",
+                },
+              },
+            },
+            "description": "Conflict with target resource",
+            "headers": Object {
+              "x-request-id": Object {
+                "description": "Request id",
+                "schema": Object {
+                  "type": "string",
+                },
+              },
+            },
+          },
+        },
+        "summary": "Delete Transaction",
+        "tags": Array [
+          "Transaction",
+        ],
+      },
+      "get": Object {
+        "description": "Gets Transaction by Id",
+        "operationId": "getTransactionById",
+        "parameters": Array [
+          Object {
+            "$ref": "#/components/parameters/Language",
+          },
+          Object {
+            "description": "Defines the fields to be shown separeted by comma",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "schema": Object {
+              "type": "string",
+            },
+          },
+          Object {
+            "description": "Transaction Id",
+            "in": "path",
+            "name": "transactionId",
+            "required": true,
+            "schema": Object {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": Object {
+          "200": Object {
+            "content": Object {
+              "application/json": Object {
+                "schema": Object {
+                  "$ref": "#/components/schemas/Transaction",
+                },
+              },
+            },
+            "description": "OK",
+            "headers": Object {
+              "x-request-id": Object {
+                "description": "Request id",
+                "schema": Object {
+                  "type": "string",
+                },
+              },
+            },
+          },
+          "404": Object {
+            "content": Object {
+              "application/json": Object {
+                "example": Object {
+                  "code": "STMGNC0001",
+                  "message": "Not Found",
+                },
+                "schema": Object {
+                  "items": Object {
+                    "$ref": "#/components/schemas/ResponseError",
+                  },
+                  "type": "array",
+                },
+              },
+            },
+            "description": "Resource not found",
+            "headers": Object {
+              "x-request-id": Object {
+                "description": "Request id",
+                "schema": Object {
+                  "type": "string",
+                },
+              },
+            },
+          },
+        },
+        "summary": "Get Transaction by Id",
+        "tags": Array [
+          "Transaction",
+        ],
+      },
+      "put": Object {
+        "description": "Updates Transaction",
+        "operationId": "updateTransaction",
+        "parameters": Array [
+          Object {
+            "$ref": "#/components/parameters/Language",
+          },
+          Object {
+            "description": "Define the request payload return",
+            "in": "header",
+            "name": "Prefer",
+            "required": false,
+            "schema": Object {
+              "default": "return-minimal",
+              "enum": Array [
+                "return-minimal",
+                "return-representation",
+              ],
+              "type": "string",
+            },
+          },
+          Object {
+            "description": "Transaction Id",
+            "in": "path",
+            "name": "transactionId",
+            "required": true,
+            "schema": Object {
+              "type": "string",
+            },
+          },
+        ],
+        "requestBody": Object {
+          "content": Object {
+            "application/json": Object {
+              "schema": Object {
+                "$ref": "#/components/schemas/undefined",
+              },
+            },
+          },
+          "required": true,
+        },
+        "responses": Object {
+          "200": Object {
+            "content": Object {
+              "application/json": Object {
+                "schema": Object {
+                  "$ref": "#/components/schemas/Transaction",
+                },
+              },
+            },
+            "description": "OK",
+            "headers": Object {
+              "x-request-id": Object {
+                "description": "Request id",
+                "schema": Object {
+                  "type": "string",
+                },
+              },
+            },
+          },
+          "204": Object {
+            "content": Object {},
+            "description": "No Content",
+            "headers": Object {
+              "x-request-id": Object {
+                "description": "Request id",
+                "schema": Object {
+                  "type": "string",
+                },
+              },
+            },
+          },
+          "404": Object {
+            "content": Object {
+              "application/json": Object {
+                "example": Object {
+                  "code": "STMGNC0001",
+                  "message": "Not Found",
+                },
+                "schema": Object {
+                  "items": Object {
+                    "$ref": "#/components/schemas/ResponseError",
+                  },
+                  "type": "array",
+                },
+              },
+            },
+            "description": "Resource not found",
+            "headers": Object {
+              "x-request-id": Object {
+                "description": "Request id",
+                "schema": Object {
+                  "type": "string",
+                },
+              },
+            },
+          },
+          "409": Object {
+            "content": Object {
+              "application/json": Object {
+                "example": Object {
+                  "message": "Conflict",
+                },
+                "schema": Object {
+                  "items": Object {
+                    "$ref": "#/components/schemas/ResponseError",
+                  },
+                  "type": "array",
+                },
+              },
+            },
+            "description": "Conflict with target resource",
+            "headers": Object {
+              "x-request-id": Object {
+                "description": "Request id",
+                "schema": Object {
+                  "type": "string",
+                },
+              },
+            },
+          },
+        },
+        "summary": "Update Transaction",
+        "tags": Array [
+          "Transaction",
+        ],
+      },
+    },
+  },
+  "security": Array [
+    Object {
+      "OAuth2": Array [],
+    },
+  ],
+}
+`;
