@@ -1,0 +1,8 @@
+{
+	"mysql": {
+		"database": { "ENV": "STAM_DB_DATABSE" },
+		"user": { "ENV": "STAM_DB_USERNAME" },
+		"password": { "ENV": "STAM_DB_PASSWORD" },
+		"driver": "mysql"
+	}
+}

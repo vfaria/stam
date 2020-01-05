@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   MariaDB:
     restart: always
@@ -11,3 +11,12 @@ services:
       - MYSQL_PASSWORD=${STAM_DB_PASSWORD}
       - MYSQL_ROOT_PASSWORD=${STAM_DB_PASSWORD}
       - MYSQL_DATABASE=${STAM_DB_DATABASE}
+  Neo4J:
+    restart: always
+    image: neo4j:latest
+    network_mode: "bridge"
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      - NEO4J_AUTH=none

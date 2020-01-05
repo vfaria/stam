@@ -20,7 +20,7 @@
     "test:dev-dotenv": "node -r dotenv/config node_modules/.bin/jest --watch",
     "lint": "eslint src test",
     "migration:dotenv": "node -r dotenv/config node_modules/.bin/knex migrate:latest --knexfile db/database.js",
-    "migration": "knex migrate:latest --knexfile db/database.js",
+    "migration": "db-migrate --confg db/migrate-config.json",
     "migration-redo:dotenv": "node -r dotenv/config node_modules/.bin/knex-migrate redo --verbose  --knexfile db/database.js",
     "migration-redo": "knex-migrate redo --verbose --knexfile db/database.js",
     "migrate": "node -r dotenv/config node_modules/.bin/knex-migrate --knexfile db/database.js",
@@ -53,12 +53,16 @@
     "@beetech/bee-server-validator": "0.0.2",
     "@beetech/bee-sting": "^1.1.1",
     "cryptr": "3.0.0",
+    "db-migrate": "^0.11.6",
+    "db-migrate-mysql": "^1.1.10",
     "env-var": "^3.5.0",
     "http-status-codes": "^1.3.0",
     "knex": "^0.16.3",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
-    "mysql2": "^1.6.4"
+    "mysql": "^2.17.1",
+    "mysql2": "^1.6.4",
+    "neode": "^0.2.16"
   },
   "devDependencies": {
     "cross-env": "^5.2.0",

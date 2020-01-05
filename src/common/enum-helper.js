@@ -12,6 +12,10 @@ const enumHelper = Object.freeze({
     flagsOnBeneficiary: 'flags_on_beneficiary',
     flagsOnReport: 'flags_on_report',
     flagType: 'flag_type',
+  },
+  purposes: {
+    RESIDENT_MAINTENANCE: 1,
+    OWN_ACCOUNT_ABROAD: 2
   }
 });
 

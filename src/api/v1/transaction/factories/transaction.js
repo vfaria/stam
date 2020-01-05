@@ -1,12 +1,13 @@
 const { modelPresenter: modelPresenterHelper } = require('@beetech/bee-server-model-presenter');
 
 const Controller = require('../../../../core/Controller');
-const Repository = require('../../../../core/RepositorySQL');
+const Repository = require('../repositories/TransactionRepository');
 const Service = require('../../../../core/Service');
-const JSONSchema = require('../models/transaction');
+const JSONSchema = require('../models/TransactionJSONSchema');
 const knexInstance = require('../../../../common/knex-instance');
+const neodeInstance = require('../../../../common/neode-instance');
 const { tables } = require('../../../../common/enum-helper');
-const { transactionModel } = require('../models');
+const { transactionModel, customerOGM, beneficiaryOGM } = require('../models');
 const crypter = require('../../../../helper/crypter');
 const logger = require('../../../../helper/logger');
 const errors = require('../../../../common/errors/error-helper');
@@ -23,6 +24,7 @@ const modelPresenter = modelPresenterHelper({
 function createTransactionRepository() {
   const repository = new Repository({
     knexInstance,
+    neodeInstance: neodeInstance.with({ Customer: customerOGM, Beneficiary: beneficiaryOGM }),
     tableName: tables.transaction,
     JSONSchema: transactionModel.JSONSchema,
     validFields: transactionModel.validFields,

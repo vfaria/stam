@@ -63,16 +63,16 @@ CREATE TABLE IF NOT EXISTS `stam`.`BENEFICIARY` (
   `bank_account_code` VARCHAR(255) NOT NULL,
   `name` VARCHAR(255) NOT NULL,
   `country` CHAR(3) NOT NULL,
-  `CUSTOMER_document_number` VARCHAR(45) NULL,
+  `customer_document_number` VARCHAR(45) NULL,
   PRIMARY KEY (`bank_account_code`),
   CONSTRAINT `fk_BENEFICIARY_CUSTOMER1`
-    FOREIGN KEY (`CUSTOMER_document_number`)
+    FOREIGN KEY (`customer_document_number`)
     REFERENCES `stam`.`CUSTOMER` (`document_number`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_BENEFICIARY_CUSTOMER1_idx` ON `stam`.`BENEFICIARY` (`CUSTOMER_document_number` ASC);
+CREATE INDEX `fk_BENEFICIARY_CUSTOMER1_idx` ON `stam`.`BENEFICIARY` (`customer_document_number` ASC);
 
 
 -- -----------------------------------------------------

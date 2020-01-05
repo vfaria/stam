@@ -1,0 +1,4 @@
+Fix init migration (migrate from script)
+Seed of Transaction Purposes
+Create Neode Models
+Neo4J Inserts

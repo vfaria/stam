@@ -67,8 +67,8 @@ const modelGenerator = Object.freeze({
         },
         addressLine: {
           type: 'string'
-        },
-      },
+        }
+      }
     },
     beneficiary: {
       type: 'object',
@@ -94,7 +94,7 @@ const modelGenerator = Object.freeze({
         },
       },
     }
-  },
+  }
 });
 
 const transaction = new BeeModel(modelGenerator);
